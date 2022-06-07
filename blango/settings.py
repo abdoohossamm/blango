@@ -135,13 +135,13 @@ class Dev(Configuration):
     USE_L10N = True
 
     USE_TZ = True
-
+    # REGISTRATION_OPEN = False
 
     # Static files (CSS, JavaScript, Images)
     # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
     STATIC_URL = '/static/'
-
+    LOGOUT_REDIRECT_URL = 'index'
     # Default primary key field type
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -177,6 +177,9 @@ class Dev(Configuration):
       'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
       'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     ]
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    ACCOUNT_ACTIVATION_DAYS = 7
+
 class Prod(Dev):
   DEBUG = False
   SECRET_KEY = values.SecretValue()
