@@ -46,13 +46,17 @@ class Dev(Configuration):
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
+        'django.contrib.sites',
         'django.contrib.staticfiles',
         'blango_auth',
         'blog',
         'crispy_forms',
         'crispy_bootstrap5',
         'debug_toolbar',
-        
+        'allauth',
+        "allauth.account",
+        "allauth.socialaccount",
+        "allauth.socialaccount.providers.google",
     ]
     INTERNAL_IPS = ["192.168.10.93"]
     MIDDLEWARE = [
@@ -68,7 +72,7 @@ class Dev(Configuration):
     ]
 
     ROOT_URLCONF = 'blango.urls'
-
+    SITE_ID = 1
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -179,7 +183,10 @@ class Dev(Configuration):
     ]
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     ACCOUNT_ACTIVATION_DAYS = 7
-
+    ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
 class Prod(Dev):
   DEBUG = False
   SECRET_KEY = values.SecretValue()
