@@ -23,4 +23,5 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += [
         path("__debug__/", include(debug_toolbar.urls)),
+        path("api/v1/", include("blog.api_urls")),
     ]
