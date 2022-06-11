@@ -57,6 +57,7 @@ class Dev(Configuration):
         "allauth.account",
         "allauth.socialaccount",
         "allauth.socialaccount.providers.google",
+        "rest_framework",
     ]
     INTERNAL_IPS = ["192.168.10.93"]
     MIDDLEWARE = [
