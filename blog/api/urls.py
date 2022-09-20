@@ -29,10 +29,6 @@ urlpatterns = format_suffix_patterns(urlpatterns)
 
 urlpatterns += [
     path("auth/", include("rest_framework.urls")),
-    path("token-auth/", views.obtain_auth_token)
-]
-urlpatterns += [
-    path("auth/", include("rest_framework.urls")),
     path("token-auth/", views.obtain_auth_token),
     re_path(
         r"^swagger(?P<format>\.json|\.yaml)$",
