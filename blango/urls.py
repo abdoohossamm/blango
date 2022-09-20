@@ -18,10 +18,11 @@ urlpatterns = [
     name="django_registration_register",),
     path("accounts/", include("django_registration.backends.activation.urls")),
     path("accounts/", include("allauth.urls")),
-
-]
-urlpatterns += [
-    path("__debug__/", include(debug_toolbar.urls)),
     path("api/v1/", include("blog.api.urls")),
     path("api/v2/", include("blog.api_urls")),
+
 ]
+if settings.DEBUG:
+    urlpatterns += [
+        path("__debug__/", include(debug_toolbar.urls)),
+    ]
