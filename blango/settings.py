@@ -64,6 +64,7 @@ class Dev(Configuration):
         'rest_framework.authtoken',
         'drf_yasg',
         'django_filters',
+        'versatileimagefield',
     ]
     
     INTERNAL_IPS = ["192.168.10.93"]
@@ -154,6 +155,10 @@ class Dev(Configuration):
 
     STATIC_URL = '/static/'
     LOGOUT_REDIRECT_URL = 'index'
+    # define where uploaded files are saved.
+    MEDIA_ROOT = BASE_DIR / "media"
+    # URL/path to serve media from.
+    MEDIA_URL = "/media/"
     # Default primary key field type
     # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
