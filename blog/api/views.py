@@ -14,6 +14,7 @@ from django.utils import timezone
 from rest_framework.exceptions import PermissionDenied
 from datetime import timedelta
 from django.http import Http404
+from blog.api.filters import PostFilterSet
 
 
 # API views with generics views and mixins
@@ -30,6 +31,8 @@ from django.http import Http404
 #     serializer_class = PostDetailSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
+    filterset_class = PostFilterSet
+    ordering_fields = ["published_at", "author", "title", "slug"]
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
     queryset = Post.objects.all()
 
@@ -84,6 +87,11 @@ class PostViewSet(viewsets.ModelViewSet):
         if request.user.is_anonymous:
             raise PermissionDenied("You must be logged in to see which Posts are yours")
         posts = self.get_queryset().filter(author=request.user)
+        
+        page = self.paginate_queryset(posts)
+        if page is not None:
+            serializer = PostSerializer(page, many=True, context={"request": request})
+            return self.get_paginated_response(serializer.data)
         serializer = PostSerializer(posts, many=True, context={"request": request})
         return Response(serializer.data)
     

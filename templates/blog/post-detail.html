@@ -5,6 +5,13 @@
 {% row %}
     <div class="col">
         {% include "blog/post-byline.html" %}
+        {% if post.hero_image %}
+            {% row %}
+            {% col %}
+                <img class="img-fluid" src="{{ post.hero_image.url }}">
+            {% endcol %}
+            {% endrow %}
+        {% endif %}
     </div>
 {% endrow %}
 {% row %}
@@ -21,6 +28,7 @@
     {% endrow %}
 {% endif %}
 {% include "blog/post-comments.html" %}
+
 {% row %}
     {% col %}
       {% cache 3600 recent_posts post%}

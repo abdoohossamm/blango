@@ -14,3 +14,7 @@ oauthlib==3.2.1
 packaging==21.3
 pycparser==2.21
 PyJWT==2.1.0
+django_filters==21.1
+djangorestframework-simplejwt==4.4.0
+PyJWT==1.7.1
+django-versatileimagefield==2.2
